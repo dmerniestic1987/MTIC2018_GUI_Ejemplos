@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation';
+import Reloj from './components/Reloj';
 import { tickers } from './tickers.json';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
       <div className="App">
         <Navigation titulo="Manteca"/>
         <header className="App-header">
+          <Reloj/>
           <img src={logo} className="App-logo" alt="logo" />
             Learn React
         </header>
