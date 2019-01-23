@@ -1,0 +1,28 @@
+{
+    "tickers": [
+        {
+            "id" : 1,
+            "tickerName" : "Bitcoin",
+            "tickerSymbol" : "BTC",
+            "valueUsd" : 3000.05   
+        },
+        {
+            "id" : 2,
+            "tickerName" : "Ether",
+            "tickerSymbol" : "ETH",
+            "valueUsd" : 120.05   
+        },
+        {
+            "id" : 3,
+            "tickerName" : "Ripple",
+            "tickerSymbol" : "XRP",
+            "valueUsd" : 30.05   
+        },
+        {
+            "id" : 4,
+            "tickerName" : "Tron",
+            "tickerSymbol" : "TRX",
+            "valueUsd" : 60.05   
+        }
+    ]
+}
