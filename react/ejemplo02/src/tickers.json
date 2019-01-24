@@ -23,6 +23,18 @@
             "tickerName" : "Tron",
             "tickerSymbol" : "TRX",
             "valueUsd" : 60.05   
+        },
+        {
+            "id" : 5,
+            "tickerName" : "Pangolines",
+            "tickerSymbol" : "PGS",
+            "valueUsd" : 160.05   
+        },
+        {
+            "id" : 6,
+            "tickerName" : "OpenVino Coin",
+            "tickerSymbol" : "MTB",
+            "valueUsd" : 500.05   
         }
     ]
 }

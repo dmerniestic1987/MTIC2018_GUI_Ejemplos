@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation';
 import Reloj from './components/Reloj';
@@ -15,25 +14,33 @@ class App extends Component {
   render() {
     const tickerList = this.state.tickers.map((ticker) => {
       
-      return (<div className="card"> 
-                <div className="card-header">
-                  {ticker.tickerSymbol}
-                </div>
-                {ticker.tickerName}
-              </div> ); 
+      return (
+      <div className="col-md-4">
+        <div className="card mt-4"> 
+          <div className="card-header">
+            <h3>{ticker.tickerSymbol} </h3>
+            <span className="badge badge-pill badge-danger ml-2">{ticker.tickerName}</span>
+          </div>
+          <div className="card-body">
+            <p>Precio: {ticker.valueUsd} USD</p>
+          </div>
+        </div>
+      </div> ); 
     });
 
     return (
       <div className="App">
         <Navigation titulo="Manteca"/>
-        <header className="App-header">
+        <header className="App-header">          
           <Reloj/>
-          <img src={logo} className="App-logo" alt="logo" />
-            Learn React
         </header>
 
-        { tickerList }
+        <div className="container">
+          <div className="row mt-4">
+          { tickerList }
+          </div>
 
+        </div>
       </div>
     );
   }

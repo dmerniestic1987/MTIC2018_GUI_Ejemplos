@@ -18,11 +18,11 @@ class Navigation extends Component {
     render() {
         return (
             <nav className="navbar navbar-default navbar-static-top">
-            <h1 >{this.props.titulo.toUpperCase()}</h1>
-            <button className="btn btn-lg btn-primary bg-dark" 
-                    onClick={() => {this.handleClick('Inicio')}}>Inicio</button>
-            <button className="btn btn-lg btn-primary" 
-                    onClick={() => {this.handleClick('Fin')}}>Fin</button>
+                <h1 >{this.props.titulo.toUpperCase()}</h1>
+                <button className="btn btn-lg btn-primary bg-dark" 
+                        onClick={() => {this.handleClick('Inicio')}}>Inicio</button>
+                <button className="btn btn-lg btn-primary bg-dark" 
+                        onClick={() => {this.handleClick('Fin')}}>Fin</button>
             </nav>
         );
     }
