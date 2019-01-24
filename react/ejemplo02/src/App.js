@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import Reloj from './components/Reloj';
+import TickeForm from './components/TickerForm';
 import { tickers } from './tickers.json';
 
 class App extends Component {
@@ -30,16 +31,17 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navigation titulo="Manteca"/>
+        <Navigation cantTickers={this.state.tickers.length}/>
         <header className="App-header">          
           <Reloj/>
         </header>
 
+        
         <div className="container">
+          <TickeForm />
           <div className="row mt-4">
-          { tickerList }
+            { tickerList }
           </div>
-
         </div>
       </div>
     );

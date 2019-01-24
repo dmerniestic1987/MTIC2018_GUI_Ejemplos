@@ -17,8 +17,8 @@ class Navigation extends Component {
       
     render() {
         return (
-            <nav className="navbar navbar-default navbar-static-top">
-                <h1 >{this.props.titulo.toUpperCase()}</h1>
+            <nav className="navbar navbar-default navbar-static-top bg-dark">
+                Criptomonedas: <span className="badge badge-pill badge-light ml-2">{this.props.cantTickers}</span>
                 <button className="btn btn-lg btn-primary bg-dark" 
                         onClick={() => {this.handleClick('Inicio')}}>Inicio</button>
                 <button className="btn btn-lg btn-primary bg-dark" 
