@@ -9,9 +9,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tickers
+      tickers: tickers
     }
   }
+
+  handleClick(ticker) {
+    ticker.id = tickers.length;
+    const newTickers = this.state.tickers.slice().concat(ticker);
+    console.log(newTickers);
+    this.setState({tickers: newTickers});
+  }
+
   render() {
     const tickerList = this.state.tickers.map((ticker) => {
       
@@ -38,7 +46,7 @@ class App extends Component {
 
         
         <div className="container">
-          <TickeForm />
+          <TickeForm onClick={(ticker) => this.handleClick(ticker)}/>
           <div className="row mt-4">
             { tickerList }
           </div>

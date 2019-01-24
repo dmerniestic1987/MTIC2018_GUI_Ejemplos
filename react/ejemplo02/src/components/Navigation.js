@@ -6,7 +6,7 @@ class Navigation extends Component {
         this.state = {
           operaciones: []
         }    
-      }
+    }
     handleClick(buttonName){
         const operaciones = this.state.operaciones.concat([buttonName]);
         this.setState({
@@ -18,7 +18,7 @@ class Navigation extends Component {
     render() {
         return (
             <nav className="navbar navbar-default navbar-static-top bg-dark">
-                Criptomonedas: <span className="badge badge-pill badge-light ml-2">{this.props.cantTickers}</span>
+                <p className="bg-dark text-primary text-lg-left">Criptomonedas: <span className="badge badge-pill badge-light ml-2">{this.props.cantTickers}</span> </p>
                 <button className="btn btn-lg btn-primary bg-dark" 
                         onClick={() => {this.handleClick('Inicio')}}>Inicio</button>
                 <button className="btn btn-lg btn-primary bg-dark" 
