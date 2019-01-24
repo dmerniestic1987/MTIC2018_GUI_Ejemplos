@@ -11,7 +11,6 @@ class App extends Component {
       jugadores: [],
       balanceAcumulado: 0,
       ultimoGanador: 'x0',
-      loteriaFinalizada: false, 
       huboError: false,
       mensajeError: '', 
       valorApostado: '', 
@@ -20,17 +19,13 @@ class App extends Component {
   }
   async componentDidMount() {
     const jugadores = await loteria.methods.getJugadores().call();
-    console.log(jugadores);
     const balance = await loteria.methods.getBalance().call();
-    console.log(balance);
     const ultimoGanador = await loteria.methods.getUltimoGanador().call();
-    console.log(ultimoGanador);
     const cuenta = await web3.eth.getAccounts();
     this.setState({
       jugadores: jugadores,
       balanceAcumulado: balance,
       ultimoGanador: ultimoGanador,
-      loteriaFinalizada: false, 
       huboError: false,
       mensajeError: '',
       valorApostado: '',
@@ -40,7 +35,11 @@ class App extends Component {
 
   async seleccionarGanador(){
     try{
-      await loteria.methods.elegirGanador().call();
+      await loteria.methods.elegirGanador().send({ from: this.state.cuenta[0]});
+      const ultimoGanador = await loteria.methods.getUltimoGanador().call();
+      this.setState({
+        ultimoGanador: ultimoGanador
+      });
     } catch(err) {
       this.setState({
         huboError: true, 
@@ -49,9 +48,8 @@ class App extends Component {
     }
   }
 
-  async handleClick(){
+  async handleClickJugar(){
     try {
-      alert('Apostar');
       await loteria.methods.jugar().send( {
                                             from: this.state.cuenta[0], 
                                             value: web3.utils.toWei(this.state.valorApostado, 'ether')
@@ -63,8 +61,10 @@ class App extends Component {
       });
       alert(err);
     }
+
+    this.setState({valorApostado: ''});
   }
-  
+
   handleChange = (name, event) => {
     this.setState(
         {[name]: event.target.value}
@@ -83,9 +83,9 @@ class App extends Component {
               <h5 className="card-title">Juego del día: {new Date().toLocaleDateString()} </h5>
                 <img src={logo} className="App-logo mt-4 mb-4" alt="logo" /> <br />
                 <p className="card-text mt-2">
-                  Balance Acumulado: {this.state.balanceAcumulado + ' WEI'} <br />
+                  Balance Acumulado: { web3.utils.fromWei(String(this.state.balanceAcumulado), 'ether')  + ' ETH'
+                                     } <br />
                   Último Ganador: {this.state.ultimoGanador} <br />
-                  Lotería Finalizada: {this.state.loteriaFinalizada}
                 </p>
             </div>
           </div>
@@ -100,18 +100,26 @@ class App extends Component {
                       onChange={(event) => this.handleChange('valorApostado', event)}
                       value={this.state.valorApostado}
                       className="form-control"
-                      placeholder="Precio" />
+                      placeholder="Precio"
+                      step=".00001" />
               ETH
             </div>
             <div className="form-group">
               <input  type ="button"
-                      name="guardar"
-                      onClick={() => this.handleClick()}
+                      name="jugar"
+                      onClick={() => this.handleClickJugar()}
                       className="form-control btn btn-primary"
-                      placeholder="Precio"
-                      value="Guardar" 
-                      step=".001"/>
-            </div>                    
+                      value="Jugar" 
+                      />               
+            </div>    
+            <div className="form-group">
+              <input  type ="button"
+                      name="elegir ganador"
+                      onClick={() => this.seleccionarGanador()}
+                      className="form-control btn btn-info"
+                      value="Elegir Ganador" 
+                      />       
+            </div>                
             </form>
           </div>
         </div>        
