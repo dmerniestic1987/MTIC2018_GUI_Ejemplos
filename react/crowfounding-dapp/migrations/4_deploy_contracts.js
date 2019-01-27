@@ -1,4 +1,4 @@
-var ProyectoInversion = artifacts.require("./ProyectoInversion.sol");
+var FactoryProyectoInversion = artifacts.require("./FactoryProyectoInversion.sol");
 module.exports = function(deployer) {
-  deployer.deploy(ProyectoInversion);
+  deployer.deploy(FactoryProyectoInversion);
 };

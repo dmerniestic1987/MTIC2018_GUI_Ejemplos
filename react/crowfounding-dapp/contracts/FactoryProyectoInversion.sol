@@ -1,6 +1,21 @@
 pragma solidity ^0.5.0;
 import "./Ownable.sol";
 
+contract FactoryProyectoInversion is Ownable{
+    address[] public contratosDeployados;
+    
+    function crarProyectoInversion(uint _contribucionMinima) public returns (address){
+        ProyectoInversion pi = new ProyectoInversion(_contribucionMinima, msg.sender);
+        address piAddress = address(pi);
+        contratosDeployados.push(piAddress);
+        return piAddress;
+    }
+
+    function obtenerContratosPI() public view returns (address[] memory) {
+        return contratosDeployados;
+    }
+}
+
 /**
  * @title ProyectoInversion
  * @dev El beneficiario de la inversión da alta un nuevo proyecto en la plataforma
@@ -26,9 +41,9 @@ contract ProyectoInversion is Ownable{
     mapping(address => bool) public inversores;
     
 
-    constructor() public {
-        owner = msg.sender;
-        contribucionMinima = 0.0001 ether;
+    constructor(uint _contribucionMinima, address payable _empresario) public {
+        owner = _empresario;
+        contribucionMinima = _contribucionMinima;
         cantidadInversores = 0;
     }
    
@@ -45,7 +60,7 @@ contract ProyectoInversion is Ownable{
     function invertir() external payable {
         require(msg.value >= contribucionMinima, "101 - Intenta invertir menos que la contribución mínima");
         if (!inversores[msg.sender]){
-            cantidadInversores++;
+            cantidadInversores++; 
         }
         inversores[msg.sender] = true;
     }
