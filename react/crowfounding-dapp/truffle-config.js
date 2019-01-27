@@ -39,7 +39,7 @@ module.exports = {
        timeoutBlocks: 200, 
        skipDryRun: true    
      },
-     
+
      mainnet: {
       provider: () => new HDWalletProvider(mnemonic, "https://mainnet.infura.io/${infuraKey}", 0),
       network_id: 1,       
