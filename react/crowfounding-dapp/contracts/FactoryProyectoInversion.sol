@@ -4,11 +4,14 @@ import "./Ownable.sol";
 contract FactoryProyectoInversion is Ownable{
     address[] public contratosDeployados;
     
-    function crarProyectoInversion(uint _contribucionMinima) public returns (address){
-        ProyectoInversion pi = new ProyectoInversion(_contribucionMinima, msg.sender);
+    event ContratoCreadoEvent( address indexed _contract_address,
+                               address indexed _owner);
+
+    function crearProyectoInversion(uint _contribucionMinima, uint _total_requerido) public{
+        ProyectoInversion pi = new ProyectoInversion(_contribucionMinima, _total_requerido, msg.sender);
         address piAddress = address(pi);
         contratosDeployados.push(piAddress);
-        return piAddress;
+        emit ContratoCreadoEvent(piAddress, owner);
     }
 
     function obtenerContratosPI() public view returns (address[] memory) {
@@ -35,16 +38,20 @@ contract ProyectoInversion is Ownable{
         mapping(address => bool) votantes;
     }
     SolicitudPago[] public solicitudes;
-
+    uint public totalRequerido;
     uint public contribucionMinima;
     uint public cantidadInversores;
     mapping(address => bool) public inversores;
     
+    event InvertirEvent(address indexed _owner, uint _inversor_number);
+    event AprobarSolicitudEvent(uint _votos_favor);
+    event PagarEvent(address indexed _proveedor, uint _monto, uint _votos_favor);
 
-    constructor(uint _contribucionMinima, address payable _empresario) public {
+    constructor(uint _contribucionMinima, uint _total_requerido, address payable _empresario) public {
         owner = _empresario;
         contribucionMinima = _contribucionMinima;
         cantidadInversores = 0;
+        totalRequerido = _total_requerido;
     }
    
    /**
@@ -63,6 +70,7 @@ contract ProyectoInversion is Ownable{
             cantidadInversores++; 
         }
         inversores[msg.sender] = true;
+        emit InvertirEvent(owner, cantidadInversores);
     }
 
     /**
@@ -89,6 +97,7 @@ contract ProyectoInversion is Ownable{
         require(!solicitudes[_idSolicitud].votantes[msg.sender], "202 - Usted ya votó esta propuesta");
         solicitudes[_idSolicitud].votantes[msg.sender] = true;
         solicitudes[_idSolicitud].votosFavor++;
+        emit AprobarSolicitudEvent(solicitudes[_idSolicitud].votosFavor);
     }
 
     /**
@@ -102,6 +111,9 @@ contract ProyectoInversion is Ownable{
         require(solicitudes[_idSolicitud].votosFavor > (cantidadInversores / 2));
         solicitudes[_idSolicitud].proveedor.transfer(solicitudes[_idSolicitud].monto);
         solicitudes[_idSolicitud].completo = true;
+        emit PagarEvent( solicitudes[_idSolicitud].proveedor
+                       , solicitudes[_idSolicitud].monto
+                       , solicitudes[_idSolicitud].votosFavor);
     }
 
 }

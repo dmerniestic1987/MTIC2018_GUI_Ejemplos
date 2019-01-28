@@ -1,6 +1,6 @@
 const path = require("path");
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const infuraKey = "a9..";
+const infuraKey = "a9...";
 const mnemonic = "";
 
 module.exports = {

@@ -1,5 +1,4 @@
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
-
+var Ownable = artifacts.require("./Ownable.sol");
 module.exports = function(deployer) {
-  deployer.deploy(SimpleStorage);
+  deployer.deploy(Ownable);
 };

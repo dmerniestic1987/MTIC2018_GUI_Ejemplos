@@ -1,4 +1,4 @@
-var Ownable = artifacts.require("./Ownable.sol");
+var FactoryProyectoInversion = artifacts.require("./FactoryProyectoInversion.sol");
 module.exports = function(deployer) {
-  deployer.deploy(Ownable);
+  deployer.deploy(FactoryProyectoInversion);
 };
