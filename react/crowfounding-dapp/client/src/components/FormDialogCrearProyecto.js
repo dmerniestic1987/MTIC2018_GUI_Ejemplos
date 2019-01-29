@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+
 export default class FormDialogCrearProyecto extends React.Component {
   state = { 
     open: false, 
@@ -53,7 +54,7 @@ export default class FormDialogCrearProyecto extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
             Crear Proyecto
         </Button>
         <Dialog
