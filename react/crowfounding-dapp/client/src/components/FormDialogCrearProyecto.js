@@ -40,7 +40,8 @@ export default class FormDialogCrearProyecto extends React.Component {
         console.log(trx.transactionHash);           
     }
     catch(error){
-        alert(error);
+      console.log(error);
+      alert(error);
     }
   };
 

@@ -33,20 +33,18 @@ class App extends Component {
                    , accounts
                    , factoryContract: instance }, this.getContratos);
     } catch (error) {
-      alert(
-        `No se pudo cargar Web3. Revise el Log en consola.`,
-      );
+      alert('No se pudo cargar Web3. Revise el Log en consola');
       console.error(error);
     }
   };
 
   getContratos = async () => {
     const factoryContract = this.state.factoryContract;
-    const contratosDeployados = await factoryContract.methods.obtenerContratosPI().call();
-    this.setState({contratosDeployados: contratosDeployados});
+    const direccionesContratos = await factoryContract.methods.obtenerContratosPI().call();
+    this.setState({contratosDeployados: direccionesContratos});
   };
 
-  listenContratoCreadoEvent(){
+  listenContratoCreadoEvent() {
     const factoryContract = this.state.factoryContract;
     factoryContract.events.ContratoCreadoEvent((error, event) => { console.log("1: " + event); })
     .on('data', (event) => {
@@ -57,8 +55,8 @@ class App extends Component {
                         hashTrx: event.transactionHash 
                       }
                     });
-      alert("ContratoCreadoEvent Data!!!");
       console.log("data: " + event);
+      this.getContratos();
     })
     .on('changed', (event) => {
       alert("ContratoCreadoEvent Changed! Se saca de la blockchain");
@@ -76,8 +74,8 @@ class App extends Component {
     if (!this.state.web3) {
       return <div>Cargando Web3, cuentas, and contratos...</div>;
     }
+    //Nos ponemos a esuchar los Eventos cuando se crea un contrato
     this.listenContratoCreadoEvent();
-
     return (
       <div>
         <header className="App-header">
@@ -89,6 +87,7 @@ class App extends Component {
                                   web3 = {this.state.web3}
                                   accounts = {this.state.accounts}
                                   factoryContract = {this.state.factoryContract} />
+                                  
         </div>  
       </div>
       

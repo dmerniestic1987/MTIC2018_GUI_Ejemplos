@@ -9527,7 +9527,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-28T20:58:12.177Z",
+  "updatedAt": "2019-01-29T15:42:44.045Z",
   "devdoc": {
     "details": "El beneficiario de la inversión da alta un nuevo proyecto en la plataforma de Crowfounding y los inversores aportan dinero en caso que les guste el proyecto. El dinero no se libera al beneficiario, sino que queda almacenado en el contrato,  luego el beneficiario crea Solicitudes de Pago para pagarle a algún proveedor  necesario para ejecutar el proyectos y los inversores votan para liberar o no el pago. ",
     "methods": {

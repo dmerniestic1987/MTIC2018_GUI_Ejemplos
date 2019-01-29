@@ -9357,21 +9357,15 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {
-    "4": {
-      "events": {},
-      "links": {},
-      "address": "0x2794766742ed0bF682dD2bB9973F0F7e847A7241",
-      "transactionHash": "0x6a3252368fbb2f95aa2e6138c975d66ff277d9ef5c13c3a42af91930f803cbf4"
-    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x936601a3129F937F996e304a3938EdcBd91500A3",
-      "transactionHash": "0xe7f4280b4dcb41989de800f8290ee54ffa49f6bd0b68a7dafeb71ad8890e82c9"
+      "address": "0xc43cf1ad113970Cb2c6A587b10A7d035f1a0cE80",
+      "transactionHash": "0x387f1e8fef075a483f82fcd3f5b9063c0f39834b5658b0f416b2f9c6cfcdf9fa"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-28T21:44:43.629Z",
+  "updatedAt": "2019-01-29T15:43:18.861Z",
   "devdoc": {
     "methods": {
       "transferOwnership(address)": {
