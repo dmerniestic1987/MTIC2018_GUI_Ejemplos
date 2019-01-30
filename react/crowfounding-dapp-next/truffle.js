@@ -1,3 +1,4 @@
+const HDWalletProvider = require('truffle-hdwallet-provider');
 const infuraKey = "a973f72655dc4760bfc81012fec47c86";
 const mnemonic = "";
 
