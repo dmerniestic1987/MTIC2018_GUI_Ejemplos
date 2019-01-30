@@ -1,4 +1,4 @@
-const infuraKey = "a9...";
+const infuraKey = "a973f72655dc4760bfc81012fec47c86";
 const mnemonic = "";
 
 module.exports = {
