@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Web3Container from '../lib/Web3Container'
+import Web3Container from '../lib/FactoryWeb3Container'
 
 const Accounts = ({ accounts }) => (
   <div>
@@ -12,7 +12,7 @@ const Accounts = ({ accounts }) => (
 )
 
 export default () => (
-  <Web3Container
+  <FactoryWeb3Container
     renderLoading={() => <div>Loading Accounts Page...</div>}
     render={({ accounts }) => <Accounts accounts={accounts} />}
   />

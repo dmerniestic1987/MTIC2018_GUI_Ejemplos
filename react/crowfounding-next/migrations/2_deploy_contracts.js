@@ -1,5 +1,5 @@
-const SimpleStorage = artifacts.require('./SimpleStorage.sol')
+const Ownable = artifacts.require('./Ownable.sol')
 
 module.exports = function (deployer) {
-  deployer.deploy(SimpleStorage)
+  deployer.deploy(Ownable)
 }

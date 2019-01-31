@@ -1,5 +1,5 @@
-const Ownable = artifacts.require('./Ownable.sol')
+const FactoryProyectoInversion = artifacts.require('./FactoryProyectoInversion.sol')
 
 module.exports = function (deployer) {
-  deployer.deploy(Ownable)
+  deployer.deploy(FactoryProyectoInversion)
 }

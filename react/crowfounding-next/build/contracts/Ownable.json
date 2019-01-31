@@ -1585,12 +1585,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xDCf980C16B66dAa6E738fA5D1d1caAAaA1f4ad51",
-      "transactionHash": "0x8f2584d314e24686dc10d108bc40ff2d665af036ef0297676277b2ec60ac43df"
+      "address": "0xbe42500b3a1cc1D9db4cc31C1fBFE115160d4B89",
+      "transactionHash": "0xa639709f74c90566f3e1d1fb095cbf625e7a60a118d45b6b392037ecb38abda1"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-30T18:32:43.726Z",
+  "updatedAt": "2019-01-31T01:40:16.076Z",
   "devdoc": {
     "details": "The Ownable contract has an owner address, and provides basic authorization control functions, this simplifies the implementation of \"user permissions\".",
     "methods": {

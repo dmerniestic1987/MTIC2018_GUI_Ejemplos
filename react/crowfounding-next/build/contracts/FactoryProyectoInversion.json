@@ -9360,12 +9360,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x6bA0e73b0BD70941c6cFd9AB96Bb8Bbe3fC77e7f",
-      "transactionHash": "0x9ae2501320f1a07de6b621200e0ab81ce7df13f34369d5c98bb567d1068ba9c9"
+      "address": "0xc43cf1ad113970Cb2c6A587b10A7d035f1a0cE80",
+      "transactionHash": "0xd6f9d539dd0d83fd6291fabd60a734f212feb8c1677900c364cc34cd0a35d23a"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-30T18:32:43.902Z",
+  "updatedAt": "2019-01-31T01:40:16.330Z",
   "devdoc": {
     "methods": {
       "transferOwnership(address)": {
