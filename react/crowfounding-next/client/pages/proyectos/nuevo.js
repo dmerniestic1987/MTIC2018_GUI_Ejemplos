@@ -6,6 +6,7 @@ import Layout from '../../components/Layaout'
 class NuevoProyecto extends React.Component {
     render(){
         return(
+            <Layout>
             <div>
                 <h1>Crear Proyecto</h1>
                 <Button color='purple'
@@ -15,6 +16,7 @@ class NuevoProyecto extends React.Component {
                 labelPosition='left' 
                 style={{margin:'10px'}}/>
             </div>
+            </Layout>
         );
     }
 }

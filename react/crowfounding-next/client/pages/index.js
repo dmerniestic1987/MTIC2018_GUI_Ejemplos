@@ -45,21 +45,19 @@ class ProyectosIndex extends React.Component {
     return (
       <Layout>
       <div>
-        <link
-          rel="stylesheet"
-          href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css"
-        />
         <div>Ether Balance: {ethBalance}</div>
         <hr/>
         
 
         <div style={{margin:'10px', textAlign: 'center'}}>
-          <Button color='purple'
-                size='large'
-                content='Crear Proyecto' 
-                icon='add circle large' 
-                labelPosition='left' 
-                style={{margin:'10px'}}/>
+          <Link href='/proyectos/nuevo'>
+            <Button color='purple'
+                  size='large'
+                  content='Crear Proyecto' 
+                  icon='add circle large' 
+                  labelPosition='left' 
+                  style={{margin:'10px'}}/>
+            </Link>
           
           <Button color='purple'
                 size='large'
