@@ -4,6 +4,16 @@ import FactoryWeb3Container from '../lib/FactoryWeb3Container'
 import { Button, Card} from 'semantic-ui-react'
 import Layout from '../components/Layaout'
 
+class ProyectoDetalleLink extends React.Component{
+  render(){
+    return (
+      <Link as={`/proyectos/${this.props.address}`} href={`/proyectos?address=${this.props.address}`}>
+        <strong><a>{this.props.texto}</a></strong>
+      </Link>
+    );
+  }
+}
+
 class ProyectosIndex extends React.Component {
   state = {
     proyectos: undefined,
@@ -32,7 +42,7 @@ class ProyectosIndex extends React.Component {
     const listProyectos = proyectos.map((proyecto, index) => {
       return { 
         header: 'Proyecto ID: '.concat(proyecto),
-        description: <a><strong>Detalles del Proyecto</strong></a>,
+        description: <ProyectoDetalleLink address={proyecto} texto='Detalles del Proyecto'/>,
         meta: 'Proyecto financiado en Ethers',
         fluid: true
       }
