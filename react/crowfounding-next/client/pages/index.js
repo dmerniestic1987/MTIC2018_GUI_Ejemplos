@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import Web3Container from '../lib/FactoryWeb3Container'
+import FactoryWeb3Container from '../lib/FactoryWeb3Container'
 import { Button, Card} from 'semantic-ui-react'
 import Layout from '../components/Layaout'
 
-class Mantecoso extends React.Component {
+class ProyectosIndex extends React.Component {
   state = {
     proyectos: undefined,
     ethBalance: undefined
@@ -32,8 +32,8 @@ class Mantecoso extends React.Component {
     const listProyectos = proyectos.map((proyecto, index) => {
       return { 
         header: 'Proyecto ID: '.concat(proyecto),
-        description: <a><strong>Ver Proyecto</strong></a>,
-        meta: 'Proyecto Financiado en Ether',
+        description: <a><strong>Detalles del Proyecto</strong></a>,
+        meta: 'Proyecto financiado en Ethers',
         fluid: true
       }
     });
@@ -51,23 +51,37 @@ class Mantecoso extends React.Component {
         />
         <div>Ether Balance: {ethBalance}</div>
         <hr/>
-        <h1>Proyectos Abiertos</h1>
-        <Button primary content='Crear Proyecto' icon='add circle large' labelPosition='left' />
-        {this.dibujarTarjetasProyectos()}
         
-        <button onClick={this.getProyectosInversion}>Lista de Proyectos</button>
-        <button onClick={this.getEthBalance}>Get ether balance</button>
 
-        <div>
-          <Link href='/accounts'>
-            <a>My Accounts</a>
-          </Link>
+        <div style={{margin:'10px', textAlign: 'center'}}>
+          <Button color='purple'
+                size='large'
+                content='Crear Proyecto' 
+                icon='add circle large' 
+                labelPosition='left' 
+                style={{margin:'10px'}}/>
+          
+          <Button color='purple'
+                size='large'
+                content='Recargar lista de proyectos' 
+                icon='refresh circle large' 
+                labelPosition='left'
+                onClick={this.getProyectosInversion}
+                style={{margin:'10px'}} />
+
+          <Button color='purple'
+                size='large'
+                content='Consultar su balance Eth' 
+                icon='money circle large' 
+                labelPosition='left'
+                onClick={this.getEthBalance} 
+                style={{margin:'10px'}}/>
         </div>
-        <div>
-          <Link href='/'>
-            <a>Home</a>
-          </Link>
-        </div>
+        
+        <h1>Proyectos Abiertos</h1>
+
+        {this.dibujarTarjetasProyectos()}
+
       </div>
       </Layout>
     )
@@ -75,10 +89,10 @@ class Mantecoso extends React.Component {
 }
 
 export default () => (
-  <Web3Container
-    renderLoading={() => <div>Loading Mantecoso Page...</div>}
+  <FactoryWeb3Container
+    renderLoading={() => <div>Cargando la página. Aguarde por favor...</div>}
     render={({ web3, accounts, contract }) => (
-      <Mantecoso accounts={accounts} contract={contract} web3={web3} />
+      <ProyectosIndex accounts={accounts} contract={contract} web3={web3} />
     )}
   />
 )

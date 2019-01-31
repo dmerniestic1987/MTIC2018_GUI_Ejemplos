@@ -10,7 +10,7 @@ export default class Header extends Component{
       const { activeItem } = this.state
   
       return (
-        <Menu size='large' inverted>
+        <Menu size='large' inverted style={{marginTop: '10px'}}>
           <Menu.Item name='home' active={activeItem === 'home'} 
                      onClick={this.handleItemClick}>
           </Menu.Item>
