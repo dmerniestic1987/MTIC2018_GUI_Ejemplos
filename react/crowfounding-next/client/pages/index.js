@@ -7,7 +7,8 @@ import Layout from '../components/Layaout'
 class ProyectoDetalleLink extends React.Component{
   render(){
     return (
-      <Link as={`/proyectos/${this.props.address}`} href={`/proyectos?address=${this.props.address}`}>
+      <Link as={`/proyectos/${this.props.address}`} 
+            href={`/proyectos?address=${this.props.address}`}>
         <strong><a>{this.props.texto}</a></strong>
       </Link>
     );
@@ -17,7 +18,8 @@ class ProyectoDetalleLink extends React.Component{
 class ProyectosIndex extends React.Component {
   state = {
     proyectos: undefined,
-    ethBalance: undefined
+    ethBalance: undefined,
+    contractAddress: undefined
   };
 
   async componentDidMount() {
@@ -28,7 +30,7 @@ class ProyectosIndex extends React.Component {
   getProyectosInversion = async () => {
     const { contract } = this.props
     const response = await contract.methods.obtenerContratosPI().call();
-    this.setState({ proyectos: response })
+    this.setState({ proyectos: response, contractAddress: contract.options.address })
   };
 
   getEthBalance = async () => {
@@ -50,12 +52,16 @@ class ProyectosIndex extends React.Component {
     return <Card.Group centered items={listProyectos} />
   }
   render () {
-    const { ethBalance = 'N/A' } = this.state
+    const { ethBalance = 'N/A', contractAddress='N/A' } = this.state
 
     return (
       <Layout>
       <div>
-        <div>Ether Balance: {ethBalance}</div>
+        <hr />
+          <div>
+            <strong>Ether Balance:</strong> {ethBalance} <br />
+            <strong>Contrato:</strong> {contractAddress}
+          </div>
         <hr/>
         
 

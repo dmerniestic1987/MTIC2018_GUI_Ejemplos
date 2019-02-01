@@ -14,8 +14,8 @@ export default class FactoryWeb3Container extends React.Component {
       this.setState({ web3, accounts, contract })
     } catch (error) {
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      )
+        'No se pudo cargar una instancia de web3, o las cuentas o el contrato.'
+        .concat('Revise la consola para más detalle'));
       console.log(error)
     }
   }

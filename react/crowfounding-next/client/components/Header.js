@@ -12,9 +12,10 @@ export default class Header extends Component{
   
       return (
         <Menu size='large' inverted style={{marginTop: '10px'}}>
-            <Menu.Item name='home' active={activeItem === 'home'} 
-                        onClick={this.handleItemClick}>
-            </Menu.Item>
+            <Link href='/'>
+              <Menu.Item name='home' active={activeItem === 'home'}>
+              </Menu.Item>
+            </Link>
  
           <Menu.Item
             name='messages'

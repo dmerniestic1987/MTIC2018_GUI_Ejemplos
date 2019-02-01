@@ -5,7 +5,10 @@ import Layout from '../../components/Layaout'
 
 
 class FormProyecto extends Component {
-    state = {total_proyecto: '0', contribucion_minima: '0' }
+    state = { total_proyecto: '0'
+            , contribucion_minima: '0'
+            , errorMessage : ''
+            , loading: false }
 
     handleChange = (name, event) => {
         this.setState(
@@ -15,18 +18,18 @@ class FormProyecto extends Component {
      
      crearProyecto = async () => {
         const { web3, accounts, contract } = this.props;
-        const total_proyecto = web3.utils.toWei(this.state.total_proyecto, 'ether');
-        const contribucion_minima = web3.utils.toWei(this.state.contribucion_minima, 'ether');
-        alert('Total en wei: '.concat(total_proyecto)
-             .concat(' contrib mínima en wei: ').concat(contribucion_minima)
-             .concat( ' Address: ' + accounts[0]));
+        this.setState({errorMessage: '', loading: true});
         try{
+            const total_proyecto = web3.utils.toWei(this.state.total_proyecto, 'ether');
+            const contribucion_minima = web3.utils.toWei(this.state.contribucion_minima, 'ether');
             await contract.methods
             .crearProyectoInversion(contribucion_minima, total_proyecto)
             .send({from: accounts[0]});
         }catch(err){
-            alert('No se pudo crear el Proyecto. '.concat(err));
+            console.log(err);
+            this.setState({errorMessage: err.message});
         }
+        this.setState({loading: false});
       };
 
     render() {
@@ -39,17 +42,23 @@ class FormProyecto extends Component {
              .concat('interesadas en tu proyecto, también en ETH. <br />');
       return (
           
-        <Form>
+        <Form error={this.state.errorMessage !== ''}>
             <Message
                 info
                 icon='info circle'
                 header='Quieres crear un proyecto de Crowfounding?'
                 content={mensaje}
             />
+
+            <Message error 
+                header="Error al crear el proyecto"
+                content={this.state.errorMessage}
+            />
+
           <Form.Group widths='equal'>      
             <Form.Input fluid 
                         placeholder='Costo total del proyecto' 
-                        type='number' 
+                        type='text' 
                         onChange={(event) => this.handleChange('total_proyecto', event)}
                         name='total_proyecto'
                         label='Costo total del proyecto en ETH'
@@ -57,7 +66,7 @@ class FormProyecto extends Component {
             
             <Form.Input fluid 
                         placeholder='Contribución mínima' 
-                        type='number' 
+                        type='text' 
                         onChange={(event) => this.handleChange('contribucion_minima', event)}
                         name='contribucion_minima'
                         label='Contribución mínima en ETH'
@@ -65,8 +74,11 @@ class FormProyecto extends Component {
           </Form.Group>
 
           <Form.TextArea label='Descripción' placeholder='Cuéntanos acerca del proyecto...' />
-          <Form.Button onClick={this.crearProyecto}>Crear proyecto</Form.Button>
+          <Form.Button onClick={this.crearProyecto} loading={this.state.loading}>Crear proyecto</Form.Button>
+        
         </Form>
+
+
       )
     }
 }
