@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import FactoryWeb3Container from '../../lib/FactoryWeb3Container'
-import { Form, Message, Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
+import { Form, Message } from 'semantic-ui-react'
 import Layout from '../../components/Layaout'
-
+import {Router} from '../../routes';
 
 class FormProyecto extends Component {
     state = { total_proyecto: '0'
@@ -22,9 +22,9 @@ class FormProyecto extends Component {
         try{
             const total_proyecto = web3.utils.toWei(this.state.total_proyecto, 'ether');
             const contribucion_minima = web3.utils.toWei(this.state.contribucion_minima, 'ether');
-            await contract.methods
-            .crearProyectoInversion(contribucion_minima, total_proyecto)
+            await contract.methods.crearProyectoInversion(contribucion_minima, total_proyecto)
             .send({from: accounts[0]});
+            Router.pushRoute('/');
         }catch(err){
             console.log(err);
             this.setState({errorMessage: err.message});

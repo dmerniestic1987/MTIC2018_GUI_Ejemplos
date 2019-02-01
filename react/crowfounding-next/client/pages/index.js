@@ -9,7 +9,7 @@ class ProyectoDetalleLink extends React.Component{
     return (
       <Link as={`/proyectos/${this.props.address}`} 
             href={`/proyectos?address=${this.props.address}`}>
-        <strong><a>{this.props.texto}</a></strong>
+        <a><strong>{this.props.texto}</strong></a>
       </Link>
     );
   }
@@ -51,9 +51,9 @@ class ProyectosIndex extends React.Component {
     });
     return <Card.Group centered items={listProyectos} />
   }
+
   render () {
     const { ethBalance = 'N/A', contractAddress='N/A' } = this.state
-
     return (
       <Layout>
       <div>
@@ -67,14 +67,16 @@ class ProyectosIndex extends React.Component {
 
         <div style={{margin:'10px', textAlign: 'center'}}>
           <Link href='/proyectos/nuevo'>
-            <Button color='purple'
-                  size='large'
-                  content='Crear Proyecto' 
-                  icon='add circle large' 
-                  labelPosition='left' 
-                  style={{margin:'10px'}}/>
+            <a>
+              <Button color='purple'
+                    size='large'
+                    content='Crear Proyecto' 
+                    icon='add circle large' 
+                    labelPosition='left' 
+                    style={{margin:'10px'}}/>
+            </a>
             </Link>
-          
+            
           <Button color='purple'
                 size='large'
                 content='Recargar lista de proyectos' 
