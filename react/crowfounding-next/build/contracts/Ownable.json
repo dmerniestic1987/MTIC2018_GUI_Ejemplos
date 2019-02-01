@@ -1582,15 +1582,21 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0xdbA00056910294D04dB21152BbDd44894F730886",
+      "transactionHash": "0xd3bb220e9e1cfc53f8ca840ae79fee0662a0509a5e68b493805e1b7c919c0dff"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xbe42500b3a1cc1D9db4cc31C1fBFE115160d4B89",
-      "transactionHash": "0xa639709f74c90566f3e1d1fb095cbf625e7a60a118d45b6b392037ecb38abda1"
+      "address": "0x56D9e46084cA7C3ED33bc5f4e73fF3BF2F54B324",
+      "transactionHash": "0x2bc8abb5ee95a459420b23c61b2598be2f7d5fd22916be56ddb967314d6c231a"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-31T14:50:38.525Z",
+  "updatedAt": "2019-02-01T00:05:13.881Z",
   "devdoc": {
     "details": "The Ownable contract has an owner address, and provides basic authorization control functions, this simplifies the implementation of \"user permissions\".",
     "methods": {

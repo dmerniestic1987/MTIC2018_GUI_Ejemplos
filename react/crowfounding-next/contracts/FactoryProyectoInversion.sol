@@ -3,19 +3,27 @@ import "./Ownable.sol";
 
 contract FactoryProyectoInversion is Ownable{
     address[] public contratosDeployados;
-    
+    mapping(address => address[]) private proyectosByOwner;
+
     event ContratoCreadoEvent( address indexed _contract_address,
                                address indexed _owner);
 
     function crearProyectoInversion(uint _contribucionMinima, uint _total_requerido) public{
-        ProyectoInversion pi = new ProyectoInversion(_contribucionMinima, _total_requerido, msg.sender);
+        ProyectoInversion pi = new ProyectoInversion(_contribucionMinima
+                                                    , _total_requerido
+                                                    , msg.sender);
         address piAddress = address(pi);
         contratosDeployados.push(piAddress);
+        proyectosByOwner[msg.sender].push(piAddress);
         emit ContratoCreadoEvent(piAddress, owner);
     }
 
     function obtenerContratosPI() public view returns (address[] memory) {
         return contratosDeployados;
+    }
+
+    function getProyectoByOwner() public view returns(address[] memory){
+        return proyectosByOwner[msg.sender];
     }
 }
 
