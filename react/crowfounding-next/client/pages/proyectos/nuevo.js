@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import FactoryWeb3Container from '../../lib/FactoryWeb3Container'
-import { Form, Message, Input } from 'semantic-ui-react'
+import { Form, Message, Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
 import Layout from '../../components/Layaout'
 
 
@@ -74,8 +74,11 @@ class FormProyecto extends Component {
           </Form.Group>
 
           <Form.TextArea label='Descripción' placeholder='Cuéntanos acerca del proyecto...' />
-          <Form.Button onClick={this.crearProyecto} loading={this.state.loading}>Crear proyecto</Form.Button>
-        
+          
+          <div style={{margin:'10px', textAlign: 'center'}}>
+            <Form.Button onClick={this.crearProyecto}
+                        loading={this.state.loading}>Crear proyecto</Form.Button>
+          </div>
         </Form>
 
 
