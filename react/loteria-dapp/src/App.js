@@ -12,7 +12,7 @@ class App extends Component {
       balanceAcumulado: 0,
       ultimoGanador: 'x0',
       huboError: false,
-      mensajeError: '', 
+      mensaje: '', 
       valorApostado: '', 
       cuenta: ''      
     }
@@ -27,37 +27,43 @@ class App extends Component {
       balanceAcumulado: balance,
       ultimoGanador: ultimoGanador,
       huboError: false,
-      mensajeError: '',
+      mensaje: '',
       valorApostado: '',
-      cuenta: cuenta
+      cuenta: cuenta,
+      trxHash: ''
     });
   }
 
   async seleccionarGanador(){
     try{
-      await loteria.methods.elegirGanador().send({ from: this.state.cuenta[0]});
+      this.setState({ mensaje: 'Esperando que la transacción Success', trxHash: ''});
+      const trx = await loteria.methods.elegirGanador().send({ from: this.state.cuenta[0]});
+      console.log(trx);
       const ultimoGanador = await loteria.methods.getUltimoGanador().call();
       this.setState({
-        ultimoGanador: ultimoGanador
+        ultimoGanador: ultimoGanador, 
+        mensaje: 'Transaccion exitosa', 
+        trxHash: trx.transactionHash
       });
     } catch(err) {
       this.setState({
-        huboError: true, 
-        mensajeError: err
+        huboError: true
       });
     }
   }
 
   async handleClickJugar(){
     try {
-      await loteria.methods.jugar().send( {
+      this.setState({ mensaje: 'Esperando que la transacción Success', trxHash: ''});
+      const trx = await loteria.methods.jugar().send( {
                                             from: this.state.cuenta[0], 
                                             value: web3.utils.toWei(this.state.valorApostado, 'ether')
                                           });
+      console.log(trx);
+      this.setState({ mensaje: 'Transaccion exitosa', trxHash: trx.transactionHash});
     } catch(err) {
       this.setState({
-        huboError: true, 
-        mensajeError: err
+        huboError: true
       });
       alert(err);
     }
@@ -94,6 +100,7 @@ class App extends Component {
         <div className="container mt-4">
           <div className="card">
             <h5 className="card-title">Jugar a la Lotería </h5>
+            <h6>{this.state.mensaje} {this.state.trxHash}</h6>
             <form className="card-body">
             <div className="form-group">
               <input  type ="number"
